@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Informatik Blog by ChristianGaertner</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Informatik Blog</h1>
+          <h2>Keep it cool.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/ChristianGaertner/InfBlog/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/ChristianGaertner/InfBlog/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/ChristianGaertner/InfBlog" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="kryptographie" class="anchor" href="#kryptographie"><span class="octicon octicon-link"></span></a>Kryptographie</h1>
+
+<p>Los gehts! Wer nicht weiß was oder wer das ist sollte jetzt aufpassen!</p>
+
+<p>Kryptographie ist die Wissenschaft der Verschlüsselung und befasst sich mit der Geheimhaltung von vertraulichen Informationen.</p>
+
+<h2>
+<a name="doch-wie-funktioniert-das-ganze" class="anchor" href="#doch-wie-funktioniert-das-ganze"><span class="octicon octicon-link"></span></a>Doch wie funktioniert das ganze?</h2>
+
+<p>Es gibt viele verschiedene Arten der Verschlüsselung. Hier werden wir uns auf 3 mehr oder weniger simple Verfahren konzentrieren.</p>
+
+<h3>
+<a name="caesar" class="anchor" href="#caesar"><span class="octicon octicon-link"></span></a>Caesar</h3>
+
+<p>Caesar ist zugegeben die einfachste aller Verschlüsselungen und viele bereits aus dem Kindes-Alter bekannt, damals noch mit Dreh-Kärtchen oder ähnlichem.</p>
+
+<p>Basieren tut diese Verschlüsselungsart auf der Verschiebung von einzelne Buchstaben.</p>
+
+<p>Ein Beispiel:</p>
+
+<p><code>ABCD =&gt; BCDE</code></p>
+
+<p>Angewendet wurde der Schlüssel <code>A =&gt; B</code>, oder einfach nur <code>B</code>.</p>
+
+<p>Wie man unschwer erkennen kann, lässt sich das ganze schnell und einfach durchführen (und ebenso schnell zurückrechnen).</p>
+
+<p>Al­go­rith­mische Darstellung (Pseudo-Code):</p>
+
+<p>(Buchstaben werden als Zahl dargestellt (A=1, B=2, ..., Z=25).</p>
+
+<p>Buchstabe <code>x</code> soll verschlüsselt werden mit Schlüssel <code>s</code>:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">V</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">x</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="kr">int</span><span class="p">)</span> <span class="nx">x</span> <span class="o">+</span>  <span class="p">(</span><span class="kr">int</span><span class="p">)</span> <span class="nx">n</span><span class="p">)</span> <span class="nx">mod</span> <span class="mi">26</span>
+</pre></div>
+
+<p>Und entschlüsselt wird dann sehr ähnlich:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">E</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">x</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="kr">int</span><span class="p">)</span><span class="nx">x</span> <span class="o">-</span> <span class="p">(</span><span class="kr">int</span><span class="p">)</span> <span class="nx">n</span><span class="p">)</span> <span class="nx">mod</span> <span class="mi">26</span>
+</pre></div>
+
+<p><strong>Achtung:</strong> Diese Methode funktioniert <em>nur</em> mit Buchstaben im Alphabet <em>(A-Z)</em> und auch nur groß <em>oder</em> klein Buchstaben. Es wird also empfohlen vorher alle Buchstaben in eine Schreibweise zu konvertieren und Leerzeichen zu entfernen.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">V</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">(),</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">''</span><span class="p">))</span> <span class="o">=</span> <span class="p">((</span><span class="kr">int</span><span class="p">)</span> <span class="nx">x</span> <span class="o">+</span>  <span class="p">(</span><span class="kr">int</span><span class="p">)</span> <span class="nx">n</span><span class="p">)</span> <span class="nx">mod</span> <span class="mi">26</span>
+<span class="nx">E</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">''</span><span class="p">))</span> <span class="o">=</span> <span class="p">((</span><span class="kr">int</span><span class="p">)</span><span class="nx">x</span> <span class="o">-</span> <span class="p">(</span><span class="kr">int</span><span class="p">)</span> <span class="nx">n</span><span class="p">)</span> <span class="nx">mod</span> <span class="mi">26</span>
+</pre></div>
+
+<p>In diesem Beispiel wurden alle Zeichen erst in Großbuchstaben konvertiert (<code>.toUpperCase()</code>) und anschließend wird mit Hilfe von regulären Ausdrücken (<em>RegEx</em>) Leerzeichen entfernt (<code>.replace(/\s+/g, '')</code>). Natürlich gibt uns diese Methode noch immer Fehler, wenn Sonderzeichen im Text vorhanden sind.</p>
+
+<p>Eine mögliche Lösung wäre nicht streng der Spezifikation der Caesar Verschlüsselung zu folgen und auf den <em>ASCII Code</em> (<em>American Standard Code for Information Interchange</em>) zu setzten und das Alphabet zu verlassen. Anstatt bei Z wieder zu A umzuschlagen wird einfach weiter im ASCII Code gegangen - und somit jedes Zeichen verschlüsseln zu können. Dadurch werden unsere Funktionen auch wieder um ein vielfaches Einfacher:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">V</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">x</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">n</span><span class="p">)</span>
+<span class="nx">E</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">x</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">n</span><span class="p">)</span>
+<span class="c1">// s &amp; x müssen als Zahl vorliegen (ASCII Code)</span>
+</pre></div>
+        </section>
+
+        <footer>
+          Informatik Blog is maintained by <a href="https://github.com/ChristianGaertner">ChristianGaertner</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
