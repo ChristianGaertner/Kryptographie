@@ -113,6 +113,33 @@
 <span class="c1">// stdout:</span>
 <span class="nx">RJGPNLPSZNMQTHGE</span>
 </pre></div>
+
+<h3>
+<a name="rsa" class="anchor" href="#rsa"><span class="octicon octicon-link"></span></a>RSA</h3>
+
+<p>Der Aufmerksame Leser wird schnell festgestellt haben, dass beide Methoden eine große Schwäche aufweisen - der Transfer des Schlüssels. Eine kleine Darstellung:</p>
+
+<pre><code>
+|------|                |-----------|              |---------|
+|      |   Cipher       |Böse Hacker|   Cipher     |         |
+| Bob  | ===========&gt;   | Cipher+Key| ===========&gt; |  Alice  |
+|      |     Key        | =Klartext |      Key     |         |
+|------|                |-----------|              |---------|
+</code></pre>
+
+<p>Wie man sieht kann man den Key nicht mit übertragen, da sonst jeder den Cipher entschlüsseln könnte.</p>
+
+<p>Einmal einen Schlüssel wählen in einem private Gespräch ist meist ebenfalls keine Lösung, da oft nur mit einem Server kommuniziert wird, den man nicht mal eben zu StarBucks einladen kann. Die Lösung lautet asymmetrische Verschlüsselung.</p>
+
+<p>Bisher haben wir uns symmetrische Verschlüsselungs-Methoden angeguckt, ein Schlüssel wird für Ver- und Entschlüsselung genutzt. Eine asymmetrische Herangehensweise, wie <em>RSA</em> sie ist, arbeitet etwas anders.</p>
+
+<p>Hierzu wieder ein kleines Beispiel.</p>
+
+<p>Der Klartext wird in eine Box gelegt und mit einem Schloss verschlossen. Der Empfänger braucht jetzt den <strong>gleichen</strong> Schlüssel um die Nachricht zu lesen. So hat Caesar funktioniert.</p>
+
+<p>RSA geht einen anderen Weg.</p>
+
+<p>Zunächst muss ich wissen, <em>wem</em> ich eine Nachricht schicken will. Von dieser Person fordere ich nun ein Schloss an, mit diesem verschließe ich die Box und schicke ihn an den Empfänger. Nur dieser hat den Schlüssel und kann somit als einziger die Box öffnen.</p>
         </section>
 
         <footer>
