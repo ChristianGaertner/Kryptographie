@@ -44,7 +44,7 @@ E(s,x) = ((int)x - (int) n) mod 26
 
 ```javascript
 V(s.toUpperCase(), x.toUpperCase.replace(/\s+/g, '')) = ((int) x +  (int) n) mod 26
-E(s, x.toUpperCase.replace(/\s+/g, '')) = ((int)x - (int) n) mod 26
+E(s.toUpperCase(), x.toUpperCase.replace(/\s+/g, '')) = ((int)x - (int) n) mod 26
 ```
 In diesem Beispiel wurden alle Zeichen erst in Großbuchstaben konvertiert (`.toUpperCase()`) und anschließend wird mit Hilfe von regulären Ausdrücken (_RegEx_) Leerzeichen entfernt (`.replace(/\s+/g, '')`). Natürlich gibt uns diese Methode noch immer Fehler, wenn Sonderzeichen im Text vorhanden sind.
 
@@ -146,26 +146,26 @@ e * d + k * φ(N) = 1 = ggT(e, φ(N))
 
 Die Klartext Nachricht wird in den folgenden Darstellung stets `m` genannt und die verschlüsselte Nachricht `c`.
 
-```javascript
+```
 c ≡ m^e mod N
 // m < N !!
 ```
 
 Beispiel (wir verschlüsseln die Zahl 4):
 
-```javascript
+```
 75 ≡ 4^23 mod 143
 ```
 
 Diesen Cipher können wir nun getrost verschicken. Auf der anderen Seite kann `c=75` wieder entschlüsselt werden, gegeben man besitzt den geheimen Schlüssel:
 
-```javascript
+```
 m ≡ c^d mod N
 ```
 
 Konkret:
 
-```javascript
+```
 4 ≡ 75^47 mod N
 ```
 
