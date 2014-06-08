@@ -171,7 +171,52 @@
 <ul>
 <li>Nun lässt sich daraus der geheime Schlüssel berechnen: <code>d=47</code>
 </li>
-</ul>
+</ul><h3>
+<a name="das-verschl%C3%BCsseln" class="anchor" href="#das-verschl%C3%BCsseln"><span class="octicon octicon-link"></span></a>Das Verschlüsseln</h3>
+
+<p>Die Klartext Nachricht wird in den folgenden Darstellung stets <code>m</code> genannt und die verschlüsselte Nachricht <code>c</code>.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">c</span> <span class="err">≡</span> <span class="nx">m</span><span class="o">^</span><span class="nx">e</span> <span class="nx">mod</span> <span class="nx">N</span>
+<span class="c1">// m &lt; N !!</span>
+</pre></div>
+
+<p>Beispiel (wir verschlüsseln die Zahl 4):</p>
+
+<div class="highlight highlight-javascript"><pre><span class="mi">75</span> <span class="err">≡</span> <span class="mi">4</span><span class="o">^</span><span class="mi">23</span> <span class="nx">mod</span> <span class="mi">143</span>
+</pre></div>
+
+<p>Diesen Cipher können wir nun getrost verschicken. Auf der anderen Seite kann <code>c=75</code> wieder entschlüsselt werden, gegeben man besitzt den geheimen Schlüssel:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">m</span> <span class="err">≡</span> <span class="nx">c</span><span class="o">^</span><span class="nx">d</span> <span class="nx">mod</span> <span class="nx">N</span>
+</pre></div>
+
+<p>Konkret:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="mi">4</span> <span class="err">≡</span> <span class="mi">75</span><span class="o">^</span><span class="mi">47</span> <span class="nx">mod</span> <span class="nx">N</span>
+</pre></div>
+
+<p>Und so hat der private Schlüssel <code>d</code> nie das System des Empfängers verlassen - nur jener kann die Nachricht lesen. Doch wie sicher ist das System, wenn jeder den öffentlichen Schlüssel <code>N</code> kennt, aus dem man meinen privaten Schlüssel errechnet hat.</p>
+
+<p>In der Tat lässt sich das ganze knacken, aber es ist sehr schwer. Man muss wissen, aus welchen Primzahlen <code>N</code> errechnet worden ist. Dies ist eine komplexe Rechenoperation, wenn wir mit sehr großen Zahlen zu tun haben.</p>
+
+<p>Computer schaffen es heutzutage problemlos 512 Byte Schlüssel zu knacken.</p>
+
+<p>Vorgehensweise:</p>
+
+<p>Alle Primzahlen kenn bis <code>sqrt(N)</code> und folgenden Pseudo-Code ausführen:</p>
+
+<div class="highlight highlight-javascript"><pre>
+<span class="k">for</span> <span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">primes</span><span class="p">.</span><span class="nx">until</span><span class="p">(</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">N</span><span class="p">))</span> <span class="p">{</span>
+   <span class="nx">q</span> <span class="o">=</span> <span class="nx">N</span> <span class="o">/</span> <span class="nx">p</span>
+   <span class="k">if</span> <span class="p">(</span><span class="nx">primes</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">q</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">p</span><span class="p">,</span> <span class="nx">q</span><span class="p">}</span> <span class="c1">// Geknackt</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Problem hierbei ist natürlich, dass die Anzahl der Rechenoperation stark steigt, je größer N ist.</p>
+
+<p>Momentan können 4096 Byte Schlüssel noch nicht geknackt werden, aber vorraus gesagt wurde, dass es in etwa 10 Jahren durchaus möglich ist. Unsere Daten sind also auf Zeit sicher.</p>
         </section>
 
         <footer>
