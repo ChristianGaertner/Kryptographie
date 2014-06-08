@@ -144,6 +144,34 @@
 <p>Das Schloss fungiert als <strong>öffentlicher Schlüssel</strong> und der Schlüssel, der niemanden gegeben wird, fungiert als <strong>privater Schlüssel</strong> - <em>asymmetrische</em>.</p>
 
 <p>Doch was sind das für Schlüssel auch wieder Buchstaben zum Verschieben - Nein. RSA ist <em>etwas</em> komplexer.</p>
+
+<p>Erzeugen des Schlüssel-Paares:</p>
+
+<ul>
+<li>Wählen von zwei Primzahlen <code>p=11</code> und <code>q=13</code> (in der Realtität sollten dies große Zahlen sein!)</li>
+<li>Ein Teil des öffentlichen Schlüssel <code>N = p * q = 143</code>
+</li>
+<li>Nun wird der zweite Teil des Schlüssels generiert:</li>
+</ul><p>Erreicht wird dies mit der eulersche  φ-Funktion:</p>
+
+<pre><code>φ(N) = φ(143) = (p - 1)(q - 1) = 120
+</code></pre>
+
+<p>Der zweite Teil des Schlüssel wird <code>e</code> genannt und muss zu <code>120</code> teilerfremd sein. Also z.B. <code>e=23</code></p>
+
+<ul>
+<li>Der öffentliche Schlüssel ist somit <code>N=143;e=23</code>
+</li>
+<li>Der geheime Schlüssel berechnet sich aus den Inversen zu <code>e</code>.</li>
+</ul><pre><code>e * d + k * φ(N) = 1 = ggT(e, φ(N))
+// Konkret:
+23 * d + k * 120 = 1 = ggT(23, 120)
+</code></pre>
+
+<ul>
+<li>Nun lässt sich daraus der geheime Schlüssel berechnen: <code>d=47</code>
+</li>
+</ul>
         </section>
 
         <footer>
