@@ -75,7 +75,7 @@
 <p><strong>Achtung:</strong> Diese Methode funktioniert <em>nur</em> mit Buchstaben im Alphabet <em>(A-Z)</em> und auch nur groß <em>oder</em> klein Buchstaben. Es wird also empfohlen vorher alle Buchstaben in eine Schreibweise zu konvertieren und Leerzeichen zu entfernen.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="nx">V</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">(),</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">''</span><span class="p">))</span> <span class="o">=</span> <span class="p">((</span><span class="kr">int</span><span class="p">)</span> <span class="nx">x</span> <span class="o">+</span>  <span class="p">(</span><span class="kr">int</span><span class="p">)</span> <span class="nx">n</span><span class="p">)</span> <span class="nx">mod</span> <span class="mi">26</span>
-<span class="nx">E</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">''</span><span class="p">))</span> <span class="o">=</span> <span class="p">((</span><span class="kr">int</span><span class="p">)</span><span class="nx">x</span> <span class="o">-</span> <span class="p">(</span><span class="kr">int</span><span class="p">)</span> <span class="nx">n</span><span class="p">)</span> <span class="nx">mod</span> <span class="mi">26</span>
+<span class="nx">E</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">(),</span> <span class="nx">x</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">''</span><span class="p">))</span> <span class="o">=</span> <span class="p">((</span><span class="kr">int</span><span class="p">)</span><span class="nx">x</span> <span class="o">-</span> <span class="p">(</span><span class="kr">int</span><span class="p">)</span> <span class="nx">n</span><span class="p">)</span> <span class="nx">mod</span> <span class="mi">26</span>
 </pre></div>
 
 <p>In diesem Beispiel wurden alle Zeichen erst in Großbuchstaben konvertiert (<code>.toUpperCase()</code>) und anschließend wird mit Hilfe von regulären Ausdrücken (<em>RegEx</em>) Leerzeichen entfernt (<code>.replace(/\s+/g, '')</code>). Natürlich gibt uns diese Methode noch immer Fehler, wenn Sonderzeichen im Text vorhanden sind.</p>
@@ -176,24 +176,24 @@
 
 <p>Die Klartext Nachricht wird in den folgenden Darstellung stets <code>m</code> genannt und die verschlüsselte Nachricht <code>c</code>.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">c</span> <span class="err">≡</span> <span class="nx">m</span><span class="o">^</span><span class="nx">e</span> <span class="nx">mod</span> <span class="nx">N</span>
-<span class="c1">// m &lt; N !!</span>
-</pre></div>
+<pre><code>c ≡ m^e mod N
+// m &lt; N !!
+</code></pre>
 
 <p>Beispiel (wir verschlüsseln die Zahl 4):</p>
 
-<div class="highlight highlight-javascript"><pre><span class="mi">75</span> <span class="err">≡</span> <span class="mi">4</span><span class="o">^</span><span class="mi">23</span> <span class="nx">mod</span> <span class="mi">143</span>
-</pre></div>
+<pre><code>75 ≡ 4^23 mod 143
+</code></pre>
 
 <p>Diesen Cipher können wir nun getrost verschicken. Auf der anderen Seite kann <code>c=75</code> wieder entschlüsselt werden, gegeben man besitzt den geheimen Schlüssel:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">m</span> <span class="err">≡</span> <span class="nx">c</span><span class="o">^</span><span class="nx">d</span> <span class="nx">mod</span> <span class="nx">N</span>
-</pre></div>
+<pre><code>m ≡ c^d mod N
+</code></pre>
 
 <p>Konkret:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="mi">4</span> <span class="err">≡</span> <span class="mi">75</span><span class="o">^</span><span class="mi">47</span> <span class="nx">mod</span> <span class="nx">N</span>
-</pre></div>
+<pre><code>4 ≡ 75^47 mod N
+</code></pre>
 
 <p>Und so hat der private Schlüssel <code>d</code> nie das System des Empfängers verlassen - nur jener kann die Nachricht lesen. Doch wie sicher ist das System, wenn jeder den öffentlichen Schlüssel <code>N</code> kennt, aus dem man meinen privaten Schlüssel errechnet hat.</p>
 
