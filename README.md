@@ -31,28 +31,28 @@ Al­go­rith­mische Darstellung (Pseudo-Code):
 Buchstabe `x` soll verschlüsselt werden mit Schlüssel `s`:
 
 ```javascript
-V(s,x) = ((int) x +  (int) n) mod 26
+V(s,x) = ((int) x +  (int) s) mod 26
 ```
 
 Und entschlüsselt wird dann sehr ähnlich:
 
 ```javascript
-E(s,x) = ((int)x - (int) n) mod 26
+E(s,x) = ((int)x - (int) s) mod 26
 ```
 
 **Achtung:** Diese Methode funktioniert _nur_ mit Buchstaben im Alphabet _(A-Z)_ und auch nur groß _oder_ klein Buchstaben. Es wird also empfohlen vorher alle Buchstaben in eine Schreibweise zu konvertieren und Leerzeichen zu entfernen.
 
 ```javascript
-V(s.toUpperCase(), x.toUpperCase.replace(/\s+/g, '')) = ((int) x +  (int) n) mod 26
-E(s.toUpperCase(), x.toUpperCase.replace(/\s+/g, '')) = ((int)x - (int) n) mod 26
+V(s.toUpperCase(), x.toUpperCase.replace(/\s+/g, '')) = ((int) x +  (int) s) mod 26
+E(s.toUpperCase(), x.toUpperCase.replace(/\s+/g, '')) = ((int)x - (int) s) mod 26
 ```
 In diesem Beispiel wurden alle Zeichen erst in Großbuchstaben konvertiert (`.toUpperCase()`) und anschließend wird mit Hilfe von regulären Ausdrücken (_RegEx_) Leerzeichen entfernt (`.replace(/\s+/g, '')`). Natürlich gibt uns diese Methode noch immer Fehler, wenn Sonderzeichen im Text vorhanden sind.
 
 Eine mögliche Lösung wäre nicht streng der Spezifikation der Caesar Verschlüsselung zu folgen und auf den _ASCII Code_ (_American Standard Code for Information Interchange_) zu setzten und das Alphabet zu verlassen. Anstatt bei Z wieder zu A umzuschlagen wird einfach weiter im ASCII Code gegangen - und somit jedes Zeichen verschlüsseln zu können. Dadurch werden unsere Funktionen auch wieder um ein vielfaches Einfacher:
 
 ```javascript
-V(s,x) = (x + n)
-E(s,x) = (x - n)
+V(s,x) = (x + s)
+E(s,x) = (x - s)
 // s & x müssen als Zahl vorliegen (ASCII Code)
 ```
 
@@ -68,7 +68,7 @@ Bis das Ende des Schlüssel-Wortes erreicht wird. Nun wird wieder mit dem 1. Buc
 Pseudo-Code:
 
 ```javascript
-V(s,x) = (x + n) // Caesar!
+V(s,x) = (x + s) // Caesar!
 
 for (index i in klartext) {
   put V(schluessel[i mod schluessel.length], klartext[i])
